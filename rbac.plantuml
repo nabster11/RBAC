@@ -1,0 +1,161 @@
+@startuml
+
+title __RBAC's Class Diagram__\n
+
+  namespace com.rbac {
+    class com.rbac.Main {
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace dao {
+      interface com.rbac.dao.GenericDao {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace dao {
+      interface com.rbac.dao.ResourceDao {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace dao {
+      interface com.rbac.dao.RoleDao {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace dao {
+      interface com.rbac.dao.UserDao {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace dao {
+      namespace impl {
+        class com.rbac.dao.impl.ResourceDaoImpl {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace dao {
+      namespace impl {
+        class com.rbac.dao.impl.RoleDaoImpl {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace dao {
+      namespace impl {
+        class com.rbac.dao.impl.UserDaoImpl {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace db {
+      class com.rbac.db.ResourceDB {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace db {
+      class com.rbac.db.RoleDB {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace db {
+      class com.rbac.db.UsersDB {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace enums {
+      enum ActionTypes {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace guice {
+      class com.rbac.guice.AppInjector {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace models {
+      class com.rbac.models.Resource {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace models {
+      class com.rbac.models.Role {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace models {
+      class com.rbac.models.User {
+      }
+    }
+  }
+  
+
+  namespace com.rbac {
+    namespace service {
+      class com.rbac.service.PermissionService {
+      }
+    }
+  }
+  
+
+  com.rbac.dao.impl.ResourceDaoImpl .up.|> com.rbac.dao.ResourceDao
+  com.rbac.dao.impl.ResourceDaoImpl o-- com.rbac.db.ResourceDB : resourceDB
+  com.rbac.dao.impl.RoleDaoImpl .up.|> com.rbac.dao.RoleDao
+  com.rbac.dao.impl.RoleDaoImpl o-- com.rbac.db.RoleDB : rolesDB
+  com.rbac.dao.impl.UserDaoImpl .up.|> com.rbac.dao.UserDao
+  com.rbac.dao.impl.UserDaoImpl o-- com.rbac.db.RoleDB : roleDB
+  com.rbac.dao.impl.UserDaoImpl o-- com.rbac.db.UsersDB : usersDB
+  com.rbac.guice.AppInjector -up-|> com.google.inject.AbstractModule
+  com.rbac.service.PermissionService o-- com.rbac.dao.RoleDao : roleDao
+  com.rbac.service.PermissionService o-- com.rbac.dao.UserDao : userDao
+
+
+right footer
+
+endfooter
+
+@enduml
